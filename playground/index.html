@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Playground</title>
+    </head>
+    <body>
+        <pre id=code></pre>
+        <button id="action">Action</button>
+        <ul id="output"></ul>
+        <script type="module">
+            import { fromEvent } from "../lib/async-generators.js";
+            import { pipe } from "../lib/observer.js";
+            import { counter, filter, take, tap } from "../lib/operators.js";
+            const button = document.getElementById("action");
+            const valueOutput = document.getElementById("output");
+            document.getElementById("code").appendChild(
+                document.createTextNode(document.querySelector("script[type=module]")
+                .text
+                .split('\n')
+                .map((line, index) => line.slice(12))
+                .filter((line, index) => [1, 2, 3, 4, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23].includes(index))
+                .join('\n')
+            ));
+            // for await issue workaround in safari
+            await (async () => {
+                for await (const value of pipe(fromEvent(button, "click"), ...[
+                    counter(), tap((num) => output(`click: ${num}`)), filter((num) => num > 1), take(2)
+                ])) {
+                    output(value);    
+                }
+            })()
+            button.disabled = true;
+
+            function output(value) {
+                const item = document.createElement("li");
+                valueOutput.appendChild(item.appendChild(document.createTextNode(value)).parentNode);
+            }
+        </script>
+    </body>
+</html>
