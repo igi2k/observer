@@ -1,0 +1,12 @@
+{
+  "name": "@igi2k/observer",
+  "version": "1.0.0",
+  "description": "observer using generators",
+  "type": "module",
+  "repository": "github:igi2k/observer",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pavel Nejedly <pavel.nejedly@atlas.cz>",
+  "license": "ISC"
+}
