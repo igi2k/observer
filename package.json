@@ -5,7 +5,11 @@
   "type": "module",
   "repository": "github:igi2k/observer",
   "scripts": {
+    "start": "http-server -a localhost -c-1 -o playground",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "http-server": "14.0.0"
   },
   "author": "Pavel Nejedly <pavel.nejedly@atlas.cz>",
   "license": "ISC"
